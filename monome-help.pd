@@ -1,0 +1,206 @@
+#N canvas 256 23 891 694 12;
+#X obj 17 20 monome;
+#X text 174 58 Discovery;
+#X obj 487 125 monome;
+#X text 16 84 The [monome] object takes up to two creation arguments.
+;
+#X obj 488 249 monome grid;
+#X obj 582 249 monome arc;
+#X text 15 291 The second argument specifies the size of the device
+to connect to \, e.g. 64 or 128 for grids \, and 2 or 4 for arcs.,
+f 60;
+#X obj 488 294 monome grid 128;
+#X obj 612 294 monome grid 64;
+#X text 190 381 Usage;
+#X text 15 420 Both inlets accept messages output by [oscformat] objects.
+Messages to the first inlet are sent to the device the object represents
+\, messages to the second inlet are sent to the serialosc process.
+, f 60;
+#X obj 476 409 oscformat monome grid led set;
+#X obj 476 366 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 476 386 0 0 \$1;
+#X obj 613 485 oscformat -f si serialosc list;
+#X text 498 363 ← light up the night;
+#X obj 519 565 print From monome object;
+#N canvas 38 121 666 512 serialosc 0;
+#X obj 247 393 route serialosc localport;
+#X obj 247 461 print From serialosc;
+#X obj 247 337 monome;
+#X obj 406 268 oscformat -f si serialosc list;
+#X msg 406 246 list localhost \$1;
+#X obj 333 419 s \$0-localport;
+#X obj 518 27 r \$0-localport;
+#X floatatom 518 51 5 0 0 0 - - -;
+#X obj 406 198 bng 18 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 406 223 f;
+#X obj 430 198 r \$0-localport;
+#X text 402 170 List Devices;
+#X msg 33 251 list localhost \$1;
+#X obj 33 203 bng 18 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 33 228 f;
+#X obj 57 203 r \$0-localport;
+#X text 28 160 Request single (dis)connect notification;
+#X obj 33 273 oscformat -f si serialosc notify;
+#X text 26 178 (Send this \, then connect or disconnect a device);
+#X text 22 19 Messages sent to the serialosc process require a reply
+hostname and port number. Each [monome] object has its own reply server
+with unique port number \, which is output in a [localport xxxx< message
+on object creation.;
+#X text 22 89 No device selector is required to send messages to serialosc
+\, however any device object can be used to connect to serialosc too.
+;
+#X connect 0 0 1 0;
+#X connect 0 1 5 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 1;
+#X connect 4 0 3 0;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 4 0;
+#X connect 10 0 9 1;
+#X connect 12 0 17 0;
+#X connect 13 0 14 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 1;
+#X connect 17 0 2 0;
+#X restore 15 649 pd serialosc examples;
+#N canvas 388 48 769 653 grid 0;
+#X obj 25 143 hsl 128 15 0 15 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 22 165 oscformat monome grid led level all;
+#X obj 355 58 r \$0-grid-example-in;
+#X obj 22 192 s \$0-grid-example-in;
+#X obj 355 110 s \$0-grid-example-out;
+#X obj 22 47 oscformat sys info;
+#X obj 22 22 bng 18 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 22 73 s \$0-grid-example-in;
+#X obj 356 162 print From grid;
+#X obj 356 136 r \$0-grid-example-out;
+#X text 48 21 Get some information about the grid;
+#X text 19 121 \$700 USB dimmer bulb;
+#X text 19 241 Lighting individual LEDs;
+#X obj 22 265 tgl 18 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 22 289 0 0 \$1;
+#X obj 22 315 oscformat monome grid led set;
+#X obj 22 339 s \$0-grid-example-in;
+#X obj 26 409 hsl 128 15 0 15 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 23 484 s \$0-grid-example-in;
+#X text 21 386 Individual LED level;
+#X msg 23 431 0 0 \$1;
+#X obj 23 458 oscformat monome grid led level set;
+#X text 355 322 Light up pressed keys;
+#X obj 357 351 r \$0-grid-example-out;
+#X obj 357 378 route monome;
+#X obj 357 404 route grid;
+#X obj 357 430 route key;
+#X obj 357 458 oscformat monome grid led set;
+#X obj 357 485 s \$0-grid-example-in;
+#X obj 355 84 monome grid;
+#X text 24 559 Note that these examples will likely not work in the
+help patch \, as any connected grid will have been claimed by another
+[monome] object in the help patch.;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 2 0 29 0;
+#X connect 5 0 7 0;
+#X connect 6 0 5 0;
+#X connect 9 0 8 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 17 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 18 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 28 0;
+#X connect 29 0 4 0;
+#X restore 191 650 pd grid examples;
+#N canvas 245 157 444 298 arc 0;
+#X text 193 107 *;
+#X text 213 148 *;
+#X text 219 99 *;
+#X text 179 156 *;
+#X text 231 164 *;
+#X text 243 111 *, f 2;
+#X text 197 167 *;
+#X text 260 159 *;
+#X text 158 111 *;
+#X text 156 187 *;
+#X text 268 84 *;
+#X text 231 197 *;
+#X text 180 80 *;
+#X text 170 132 Coming “Soon”!;
+#X restore 331 650 pd arc examples;
+#X text 16 114 If no arguments are provided \, the object will NOT
+connect to a device \, but can be used to communicate with the serialosc
+process.;
+#X text 15 172 To connect to one monome device specifically \, provide
+its serial number as the first construction argument. This is useful
+if you need to differentiate between multiple devices of the same format.
+;
+#X obj 487 188 monome m0000032;
+#X text 15 243 Otherwise \, the first argument specifies the type of
+device to connect to \, either a grid or an arc., f 60;
+#X obj 519 521 monome grid;
+#X msg 613 461 list localhost 10000;
+#N canvas 565 136 455 432 Not 0;
+#X text 18 15 Getting information back from the serialosc process relies
+on knowing the port number of a process waiting to receive information.
+the [monome] object looks for an available port \, which is usually
+10000 but may be something else!;
+#X text 16 83 It’s possible to automatically make queries to serialosc
+as [monome] outputs [localport xxxxxx< immediately after finding the
+available port. I didn’t include this in the main demo as it’s
+messy \, but here’s how you’d do it:;
+#X obj 120 186 f;
+#X obj 120 165 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 109 311 route serialosc localport;
+#X text 140 162 go go go;
+#X floatatom 195 335 5 0 0 0 - - -;
+#X text 149 187 local port gets stored here;
+#X text 67 385 Check the Pd console for a list of devices;
+#X obj 109 359 print From serialosc;
+#X obj 109 284 monome;
+#X obj 148 250 oscformat -f si serialosc list;
+#X msg 148 228 list localhost \$1;
+#X connect 2 0 12 0;
+#X connect 3 0 2 0;
+#X connect 4 0 9 0;
+#X connect 4 1 2 1;
+#X connect 4 1 6 0;
+#X connect 10 0 4 0;
+#X connect 11 0 10 1;
+#X connect 12 0 11 0;
+#X restore 667 510 pd Not working?;
+#X obj 593 590 route connected disconnected;
+#X obj 593 614 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 689 614 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 15 492 The left outlet outputs messages from the serialosc
+process. It’s your job to differentiate between messages from the
+device and serialosc \, typically with a [route prefix serialosc] object
+\, where prefix is normally monome but can be changed.;
+#X text 15 577 The right outlet outputs connected/disconnected status
+messages., f 60;
+#X text 73 20 — easy discovery and connection to monome grids and
+arcs;
+#X connect 11 0 24 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 14 0 24 1;
+#X connect 24 0 16 0;
+#X connect 24 1 27 0;
+#X connect 25 0 14 0;
+#X connect 27 0 28 0;
+#X connect 27 1 29 0;

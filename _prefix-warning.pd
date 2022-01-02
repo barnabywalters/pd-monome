@@ -1,0 +1,19 @@
+#N canvas 294 214 467 437 12;
+#X text 16 19 Beware monome device prefixes!;
+#X text 16 56 While the [monome] object itself is capable of communicating
+with any monome device regardless of prefix \, due to limitations with
+puredata’s OSC support \, it’s not practical for the various grid/arc
+UI element objects to offer prefix support.;
+#X text 16 140 Therefore \, all UI element objects will ONLY work with
+monome devices where the prefix is set to /monome! This is the default
+\, so if you have no idea what the prefix is: don’t worry about it.
+;
+#X obj 18 263 oscformat sys info;
+#X text 15 301 To set a device’s prefix back to /monome \, to enable
+UI objects \, use the following patch \, again into the [monome] object’s
+first inlet:;
+#X text 14 211 To check a device’s prefix \, send the following OSC
+to its [monome] object (first inlet) and observe the console:;
+#X obj 19 390 oscformat sys prefix;
+#X msg 19 366 list /monome;
+#X connect 7 0 6 0;

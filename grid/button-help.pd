@@ -1,0 +1,45 @@
+#N canvas 392 187 515 566 12;
+#X obj 23 22 monome/grid/button;
+#X obj 107 274 monome grid;
+#X obj 107 250 r \$0-to-grid;
+#X obj 107 353 monome/grid/button 0 0;
+#X obj 258 376 s \$0-to-grid;
+#X obj 117 406 print monome/grid/button;
+#X msg 181 320 draw;
+#X text 158 22 — a general-purpose single-key button;
+#X text 22 52 Provide x and y coordinates \, get a button which:;
+#X text 29 71 • Lights up at level 4 unpressed \, level 15 pressed
+;
+#X text 29 88 • Immediately outputs 1 and 0 on keypress and keyup
+;
+#X text 29 105 • Outputs [press duration< after each complete press
+;
+#X text 29 122 • Outputs [multi n< to track double \, triple etc.
+presses;
+#X obj 107 432 route 1 0 press multi;
+#X text 22 149 Inlet takes OSC messages from grid and [draw< messages.
+First outlet is state \, second is OSC to grid., f 62;
+#X obj 107 461 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 143 461 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 179 460 5 0 0 0 - - -;
+#X floatatom 215 486 5 0 0 0 - - -;
+#X text 22 184 The optional third creation argument defines the timeout
+for multi-press tracking \, in ms (default 120)., f 62;
+#X text 219 460 Press duration (ms);
+#X text 256 485 Number of consecutive presses;
+#X obj 18 531 monome/_prefix-warning;
+#X obj 181 297 route connected;
+#X connect 1 0 3 0;
+#X connect 1 1 23 0;
+#X connect 2 0 1 0;
+#X connect 3 0 5 0;
+#X connect 3 0 13 0;
+#X connect 3 1 4 0;
+#X connect 6 0 3 0;
+#X connect 13 0 15 0;
+#X connect 13 1 16 0;
+#X connect 13 2 17 0;
+#X connect 13 3 18 0;
+#X connect 23 0 6 0;

@@ -1,0 +1,48 @@
+#N canvas 405 247 532 383 12;
+#X obj 23 25 monome/grid/inrect;
+#X text 162 25 - is a point in a rect? this object knows;
+#X obj 31 282 monome/grid/inrect;
+#X text 21 67 Given a rect defined by top left and bottom right points
+in either creation args or lists to inlets 2 and 3 \, this object will
+test incoming points to inlet 1 \, and output 1 or 0 depending on whether
+they are inside the rect (inclusive) or not., f 67;
+#X floatatom 31 318 5 0 0 0 - - -;
+#X obj 31 309 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 92 184 0 0;
+#X msg 154 184 15 7;
+#X msg 31 184 0 0;
+#X msg 37 208 1 1;
+#X msg 42 232 7 7;
+#X msg 48 256 15 7;
+#X text 24 161 Test;
+#X text 79 160 Top Left;
+#X text 155 160 Bottom Right;
+#X msg 100 208 2 2;
+#X msg 108 233 4 5;
+#X msg 163 209 12 5;
+#X msg 170 233 6 3;
+#X obj 312 283 monome/grid/inrect 0 0 2 2;
+#X floatatom 312 318 5 0 0 0 - - -;
+#X obj 312 309 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 310 202 0 0;
+#X msg 320 227 1 1;
+#X msg 330 254 3 3;
+#X connect 2 0 4 0;
+#X connect 2 0 5 0;
+#X connect 6 0 2 1;
+#X connect 7 0 2 2;
+#X connect 8 0 2 0;
+#X connect 9 0 2 0;
+#X connect 10 0 2 0;
+#X connect 11 0 2 0;
+#X connect 15 0 2 1;
+#X connect 16 0 2 1;
+#X connect 17 0 2 2;
+#X connect 18 0 2 2;
+#X connect 19 0 21 0;
+#X connect 19 0 20 0;
+#X connect 22 0 19 0;
+#X connect 23 0 19 0;
+#X connect 24 0 19 0;

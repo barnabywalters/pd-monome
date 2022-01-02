@@ -1,0 +1,40 @@
+#N canvas 387 210 621 510 12;
+#X obj 106 233 monome grid;
+#X obj 106 209 r \$0-to-grid;
+#X obj 271 345 s \$0-to-grid;
+#X msg 180 279 draw;
+#X floatatom 106 345 5 0 0 0 - - -;
+#X floatatom 334 256 5 0 0 0 - - -;
+#X msg 334 278 set \$1;
+#X text 331 218 Set the displayed value without outputting anything.
+, f 32;
+#X text 17 87 Creation args are x \, y \, and length. The inlet takes
+OSC messages from a grid \, [draw< messages to redraw \, and [set n<
+messages to set the value. The first outlet is the fader value \, the
+second outlet is OSC to grid., f 82;
+#X text 16 414 See also:;
+#X text 221 414 is identical functionality with a different aesthetic.
+;
+#X text 17 138 The fader tracks multiple key presses \, and will revert
+to the next most recent still-pressed key when a key is released. It’s
+fun \, try it out!, f 82;
+#X obj 20 20 monome/grid/vfader;
+#X text 157 20 — a vertical fader;
+#X text 17 49 A vertical fader of arbitrary length. The currently selected
+value and all values below it are lit in a gently decreasing gradient.
+, f 82;
+#X obj 106 322 monome/grid/vfader 0 0 8;
+#X obj 87 414 monome/grid/vradio;
+#X obj 87 440 monome/grid/hfader;
+#X text 221 441 is the horizontal version.;
+#X obj 86 468 monome/_prefix-warning;
+#X obj 180 256 route connected;
+#X connect 0 0 15 0;
+#X connect 0 1 20 0;
+#X connect 1 0 0 0;
+#X connect 3 0 15 0;
+#X connect 5 0 6 0;
+#X connect 6 0 15 0;
+#X connect 15 0 4 0;
+#X connect 15 1 2 0;
+#X connect 20 0 3 0;

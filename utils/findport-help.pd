@@ -1,0 +1,20 @@
+#N canvas 269 186 577 474 12;
+#X obj 24 26 monome/utils/findport;
+#X text 180 26 — find a free UDP port;
+#X text 22 56 When the left inlet is banged \, searches UDP ports starting
+from the number sent to the right inlet (default 10000). Outputs the
+number of the first free port found., f 75;
+#X text 21 106 Likely vulnerable to race conditions \, in theory. Creates
+some unfortunate console spam — perhaps someday pd will implement
+a cleaner version of this basic functionality itself., f 75;
+#X floatatom 321 250 5 0 0 0 - - -;
+#X text 320 230 Starting port;
+#X obj 172 292 monome/utils/findport;
+#X floatatom 172 331 10 0 0 0 - - -;
+#X obj 168 252 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 163 230 Search;
+#X text 251 331 First free port found;
+#X connect 4 0 6 1;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;

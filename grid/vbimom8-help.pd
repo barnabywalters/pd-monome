@@ -1,0 +1,29 @@
+#N canvas 379 144 605 500 12;
+#X obj 28 29 monome/grid/vbimom8;
+#X text 174 29 — a pitch bend wheel \, essentially;
+#X text 27 116 Construction args are x \, y of the top point. First
+inlet takes OSC messages from grid \, and [draw< messages. The fader
+tracks multiple presses. First outlet sends a value from -4 to 4 on
+keydown \, and 0 on keyup. Second outlet is OSC to grid., f 73;
+#X obj 116 243 monome grid;
+#X obj 116 219 r \$0-to-grid;
+#X obj 274 355 s \$0-to-grid;
+#X msg 190 289 draw;
+#X floatatom 116 355 5 0 0 0 - - -;
+#X text 26 424 See also:;
+#X obj 96 451 monome/_prefix-warning;
+#X obj 116 332 monome/grid/vbimom8 0 0;
+#X obj 97 424 monome/grid/vfader;
+#X text 231 424 is similar but not bipolar or momentary.;
+#X text 27 60 An 8-key tall Vertical BIpolar MOMentary fader. Unpressed
+\, the two middle keys are dimly lit to indicate zero. When any key
+is held down \, keys up to it (from zero) are lit up in a pleasing
+gradient., f 73;
+#X obj 190 266 route connected;
+#X connect 3 0 10 0;
+#X connect 3 1 14 0;
+#X connect 4 0 3 0;
+#X connect 6 0 10 0;
+#X connect 10 0 7 0;
+#X connect 10 1 5 0;
+#X connect 14 0 6 0;

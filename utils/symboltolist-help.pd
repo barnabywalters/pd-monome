@@ -1,0 +1,31 @@
+#N canvas 345 181 581 498 12;
+#X obj 19 22 monome/utils/symboltolist;
+#X text 203 22 — convert a symbol with embedded spaces to a list
+;
+#X msg 72 150 list 109 111 110 111 109 101 32 97 114 99 32 52;
+#X text 70 128 Test data;
+#X obj 72 233 monome/utils/symboltolist;
+#X obj 72 175 list tosymbol;
+#X text 16 53 In some cases (e.g. when processing OSC strings) \, it’s
+possible to encounter symbols with embedded spaces \, which are difficult
+to come by in pd due to spaces creating lists. This object converts
+a space-containing symbol into a list which we can manipulate \, route
+etc. as normal., f 78;
+#X obj 96 283 print symboltolist;
+#X obj 72 321 route monome;
+#X obj 72 344 route arc;
+#X floatatom 72 431 5 0 0 0 - - -;
+#X obj 72 384 symbol;
+#X obj 72 408 f;
+#X text 129 383 If the split symbol contains numbers \, it’s unfortunately
+still necessary to convert them to floats via a [symbol] object \,
+like this.;
+#X text 168 322 The single symbol is now a routable list.;
+#X connect 2 0 5 0;
+#X connect 4 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;

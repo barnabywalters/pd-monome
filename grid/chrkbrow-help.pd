@@ -1,0 +1,100 @@
+#N canvas 307 128 657 537 12;
+#X obj 24 27 monome/grid/chrkbrow;
+#X text 175 27 — a modular row of chromatic keys;
+#X text 24 59 A row of chromatic keys \, with customisable light levels
+for C \, naturals \, accidentals and pressed keys. Stack multiple together
+with offsets and a shared keystate array to create an intuitively learnable
+keyboard., f 86;
+#X obj 74 257 monome grid;
+#X obj 74 233 r \$0-to-grid;
+#X obj 260 389 s \$0-to-grid;
+#X msg 148 306 draw;
+#X text 16 494 See also:;
+#X obj 86 494 monome/_prefix-warning;
+#X obj 74 366 monome/grid/chrkbrow 0 7 16;
+#X obj 74 391 print kb-row;
+#X text 24 111 Creation args are: x \, y \, length \, offset (semitones
+\, optional) \, keystate table (symbol \, optional). First inlet accepts
+OSC from grid \, as well as [draw< \, [reset< and [level< messages.
+First outlet emits [key \, state< messages where state is 1 or 0 Second
+outlet emits OSC to grid., f 86;
+#N canvas 157 72 564 402 light-level-configuration 0;
+#X obj 36 339 outlet;
+#X msg 36 109 level c \$1;
+#X text 31 19 The light levels of unpressed and pressed keys can be
+configured to your liking with messages. All light levels are 0-15.
+;
+#X text 130 109 Unpressed C key level (default 8);
+#X msg 52 161 level natural \$1;
+#X floatatom 36 87 5 0 15 0 - - -;
+#X floatatom 52 140 5 0 15 0 - - -;
+#X text 183 161 Unpressed natural note (default 4);
+#X floatatom 73 193 5 0 15 0 - - -;
+#X msg 73 214 level accidental \$1;
+#X text 224 214 Unpressed accidental note (default 0);
+#X floatatom 91 251 5 0 15 0 - - -;
+#X msg 91 272 level pressed \$1;
+#X text 222 272 Pressed note level (default 15);
+#X text 102 339 The keyboard does not redraw itself after [level< messages!
+;
+#X connect 1 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 0;
+#X connect 6 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 11 0 12 0;
+#X connect 12 0 0 0;
+#X restore 320 259 pd light-level-configuration;
+#X obj 320 283 t b a;
+#X text 366 282 make the row redraw when levels are changed, f 32
+;
+#N canvas 673 113 513 515 multirow-example 0;
+#X text 21 21 Multiple chrkbrows can be configured to work together
+using offsets and a shared keystate. With a bit of additional routing
+\, this allows each pressed key to light up in all its potential locations.
+;
+#X obj 23 151 table \$0-keystate;
+#X obj 72 313 monome/grid/chrkbrow 0 2 16 0 \$0-keystate;
+#X text 20 90 This example creates a three-row keyboard in the top
+three rows of a connected grid \, where the rows are offset in fourths
+(5 semitones);
+#X obj 72 268 monome/grid/chrkbrow 0 1 16 5 \$0-keystate;
+#X obj 72 222 monome/grid/chrkbrow 0 0 16 10 \$0-keystate;
+#X obj 382 351 s \$0-to-grid;
+#X obj 65 375 print multirow-kb;
+#X obj 33 350 t b a;
+#X obj 23 184 r \$0-to-all-rows;
+#X msg 33 428 draw;
+#X obj 33 405 del 1;
+#X obj 33 452 s \$0-to-all-rows;
+#X obj 228 152 r \$0-from-grid;
+#X obj 228 176 s \$0-to-all-rows;
+#X connect 2 0 8 0;
+#X connect 2 1 6 0;
+#X connect 4 0 8 0;
+#X connect 4 1 6 0;
+#X connect 5 0 8 0;
+#X connect 5 1 6 0;
+#X connect 8 0 11 0;
+#X connect 8 1 7 0;
+#X connect 9 0 5 0;
+#X connect 9 0 4 0;
+#X connect 9 0 2 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X restore 443 387 pd multirow-example;
+#X obj 148 280 route connected;
+#X obj 159 257 s \$0-from-grid;
+#X connect 3 0 9 0;
+#X connect 3 0 17 0;
+#X connect 3 1 16 0;
+#X connect 4 0 3 0;
+#X connect 6 0 9 0;
+#X connect 9 0 10 0;
+#X connect 9 1 5 0;
+#X connect 12 0 13 0;
+#X connect 13 0 6 0;
+#X connect 13 1 9 0;
+#X connect 16 0 6 0;

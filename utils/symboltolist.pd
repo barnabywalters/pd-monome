@@ -1,0 +1,64 @@
+#N canvas 0 23 772 589 12;
+#X obj 147 50 inlet;
+#X obj 196 179 list split 1;
+#X text 293 180 Iterate through the list.;
+#X text 269 98 Reset output list when we get a new input list.;
+#X obj 196 246 select 32;
+#X obj 314 306 t l;
+#X obj 47 356 t b;
+#X obj 162 204 list append;
+#X obj 256 282 t b l;
+#X obj 243 334 list prepend;
+#X obj 194 382 list tosymbol;
+#X text 342 336 Current word;
+#X obj 120 408 list append;
+#X obj 170 302 t b b b b;
+#X obj 196 138 list append 32;
+#X obj 121 469 list prepend;
+#X obj 202 444 t l;
+#X obj 47 495 list append;
+#X obj 47 543 outlet;
+#X text 11 11 Convert these tricksy symbols with spaces into a nice
+normal list for use with [route] etc.;
+#X obj 147 73 list fromsymbol;
+#X obj 196 99 t l b b;
+#X obj 47 519 list trim;
+#X text 118 520 Get rid of the pesky list symbol.;
+#X text 81 356 At the end of the list \, output what we have so far.
+;
+#X text 312 226 If the current character is a space \, append the current
+word to the main output list as a symbol \, reset the word list and
+continue the loop.;
+#X text 312 273 Otherwise \, add the current character to the word
+list and continue the loop.;
+#X text 307 138 Add a space as a termination character (any character
+would work.);
+#X connect 0 0 20 0;
+#X connect 1 0 4 0;
+#X connect 1 1 7 1;
+#X connect 1 2 6 0;
+#X connect 4 0 13 0;
+#X connect 4 1 8 0;
+#X connect 5 0 9 1;
+#X connect 6 0 17 0;
+#X connect 7 0 1 0;
+#X connect 8 0 7 0;
+#X connect 8 1 9 0;
+#X connect 9 0 5 0;
+#X connect 9 0 10 0;
+#X connect 10 0 12 1;
+#X connect 12 0 15 0;
+#X connect 13 0 7 0;
+#X connect 13 1 5 0;
+#X connect 13 2 12 0;
+#X connect 13 3 9 0;
+#X connect 14 0 1 0;
+#X connect 15 0 16 0;
+#X connect 15 0 17 1;
+#X connect 16 0 15 1;
+#X connect 17 0 22 0;
+#X connect 20 0 21 0;
+#X connect 21 0 14 0;
+#X connect 21 1 5 0;
+#X connect 21 2 16 0;
+#X connect 22 0 18 0;

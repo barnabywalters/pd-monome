@@ -1,0 +1,36 @@
+#N canvas 269 120 529 415 12;
+#X text 23 21 iterbag;
+#X obj 29 336 monome/utils/iterbag;
+#X msg 29 149 1 1;
+#X msg 38 171 2 1;
+#X msg 48 193 3 1;
+#X text 25 127 Add items;
+#X msg 120 168 1 0;
+#X msg 129 190 2 0;
+#X msg 139 212 3 0;
+#X msg 202 233 clear;
+#X text 252 233 Clear items without output;
+#X msg 219 260 flush;
+#X text 273 259 Output items and clear bag;
+#X msg 240 287 iter;
+#X text 286 286 Output items without clearing;
+#X obj 166 362 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 185 360 Bang when [iter< is finished;
+#X obj 29 362 print iterbag;
+#X text 119 132 Remove items (duplicates are removed in the order they
+were added), f 37;
+#X text 25 48 A version of [bag] which supports repeatable iteration
+through the contents. Items will be output in the order they were added
+(provided [bag] continues to support this.), f 68;
+#X connect 1 0 17 0;
+#X connect 1 1 15 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X connect 11 0 1 0;
+#X connect 13 0 1 0;
