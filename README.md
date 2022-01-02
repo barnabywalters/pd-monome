@@ -13,3 +13,11 @@ Take a look at the `examples` and the built-in help patches to see how.
 More grid UI elements, utils and arc objects coming soon!
 
 Having problems? Got ideas? File a new issue. Please include as much relevant information as possible, e.g. operating system, pd version, grid hardware, output from /sys/info, etc.
+
+## What it looks like
+
+![](https://barnabywalters.github.io/pd-monome/pd-monome-help.png)
+
+![](https://barnabywalters.github.io/pd-monome/pd-monome-grid-ui-demo.jpeg)
+
+![](https://barnabywalters.github.io/pd-monome/pd-monome-grid-ui-demo-patch.png)
