@@ -2,7 +2,7 @@
 
 A collection of pure data objects designed for connecting to and communicating with monome devices.
 
-Download the repository (green “Code” button → Download Zip) and move the  `monome` folder to somewhere in your puredata path.
+[Download the repository](https://github.com/barnabywalters/pd-monome/archive/refs/heads/main.zip) and move the  `monome` folder to somewhere in your puredata path.
 
 Use the `[monome]` object to connect to grids and arcs.
 
