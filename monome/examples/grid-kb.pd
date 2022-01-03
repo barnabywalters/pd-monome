@@ -105,9 +105,6 @@
 #000000 #000000;
 #X obj 21 269 monome/grid/vbimom8 0;
 #X obj 292 277 monome/grid/vfader 1 0 8;
-#X text 16 18 A chromatic \, four-octave fourths keyboard for grid
-128 with pitch bend and mod “wheel” \, using grid UI elements.
-Connect a MIDI device to hear the results.;
 #X text 616 147 Redraw;
 #X text 19 221 Pitch wheel;
 #X text 291 229 Mod wheel;
@@ -389,13 +386,17 @@ Connect a MIDI device to hear the results.;
 #X text 310 460 Simple built-in synth for MIDIless demoing.;
 #X text 261 424 Enable;
 #X obj 579 285 monome/utils/dedupenote;
+#X text 16 18 A chromatic \, four-octave fourths keyboard for grid
+128 with pitch bend and mod “wheel” \, using grid UI elements.
+Connect a MIDI device or enable the build-in synth to hear the results.
+, f 96;
 #X connect 0 0 7 0;
 #X connect 2 0 3 1;
 #X connect 3 0 8 0;
 #X connect 4 0 3 0;
 #X connect 7 0 1 0;
 #X connect 7 1 22 0;
-#X connect 9 0 45 0;
+#X connect 9 0 44 0;
 #X connect 10 0 21 0;
 #X connect 11 0 12 0;
 #X connect 13 0 20 0;
@@ -405,9 +406,9 @@ Connect a MIDI device to hear the results.;
 #X connect 17 0 18 0;
 #X connect 19 0 18 1;
 #X connect 20 0 14 0;
-#X connect 20 0 41 2;
+#X connect 20 0 40 2;
 #X connect 21 0 11 0;
-#X connect 21 0 41 1;
+#X connect 21 0 40 1;
 #X connect 23 0 24 0;
 #X connect 24 0 26 0;
 #X connect 24 0 25 0;
@@ -421,6 +422,6 @@ Connect a MIDI device to hear the results.;
 #X connect 34 1 32 0;
 #X connect 35 0 13 0;
 #X connect 35 1 27 0;
-#X connect 42 0 41 0;
-#X connect 45 0 16 0;
-#X connect 45 0 41 3;
+#X connect 41 0 40 0;
+#X connect 44 0 16 0;
+#X connect 44 0 40 3;
