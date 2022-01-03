@@ -1,15 +1,15 @@
 #N canvas 411 39 768 510 12;
 #X obj 16 103 r to-grid;
 #X obj 16 150 s from-grid;
-#X obj 355 127 tgl 18 0 empty empty empty 17 7 0 10 #fcfcfc #000000
-#000000 0 1;
+#X obj 355 127 tgl 18 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X obj 291 127 spigot 0;
 #X obj 291 104 r from-grid;
 #X text 16 81 Grid;
 #X text 290 81 Debugging;
 #X obj 16 127 monome grid 128;
 #X obj 291 150 print From grid;
-#N canvas 493 65 586 613 keyboard 1;
+#N canvas 493 65 586 613 keyboard 0;
 #X obj 456 222 s to-grid;
 #X obj 14 25 r from-grid;
 #X obj 455 291 s to-grid;
@@ -93,16 +93,16 @@
 #X obj 517 100 r grid-status;
 #X obj 517 123 route connected disconnected;
 #X obj 517 146 s draw-all;
-#X obj 504 132 bng 10 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
-#000000 #000000;
+#X obj 504 132 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X obj 457 302 s to-grid;
 #X obj 292 253 r from-grid;
 #X obj 222 195 r draw-all;
 #X msg 183 195 draw;
 #X obj 21 244 r from-grid;
 #X obj 176 293 s to-grid;
-#X obj 594 146 bng 19 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
-#000000 #000000;
+#X obj 594 146 bng 19 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X obj 21 269 monome/grid/vbimom8 0;
 #X obj 292 277 monome/grid/vfader 1 0 8;
 #X text 616 147 Redraw;
@@ -381,8 +381,8 @@
 #X connect 32 0 33 0;
 #X connect 33 0 24 0;
 #X restore 243 460 pd synth;
-#X obj 243 427 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
-#000000 0 1;
+#X obj 243 427 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X text 310 460 Simple built-in synth for MIDIless demoing.;
 #X text 261 424 Enable;
 #X obj 579 285 monome/utils/dedupenote;
