@@ -49,7 +49,7 @@ configured to your liking with messages. All light levels are 0-15.
 #X obj 320 283 t b a;
 #X text 366 282 make the row redraw when levels are changed, f 32
 ;
-#N canvas 673 113 513 515 multirow-example 0;
+#N canvas 562 24 513 557 multirow-example 1;
 #X text 21 21 Multiple chrkbrows can be configured to work together
 using offsets and a shared keystate. With a bit of additional routing
 \, this allows each pressed key to light up in all its potential locations.
@@ -62,14 +62,17 @@ three rows of a connected grid \, where the rows are offset in fourths
 #X obj 72 268 monome/grid/chrkbrow 0 1 16 5 \$0-keystate;
 #X obj 72 222 monome/grid/chrkbrow 0 0 16 10 \$0-keystate;
 #X obj 382 351 s \$0-to-grid;
-#X obj 65 375 print multirow-kb;
+#X obj 105 444 print multirow-kb;
 #X obj 33 350 t b a;
 #X obj 23 184 r \$0-to-all-rows;
-#X msg 33 428 draw;
-#X obj 33 405 del 1;
-#X obj 33 452 s \$0-to-all-rows;
+#X msg 33 458 draw;
+#X obj 33 435 del 1;
+#X obj 33 482 s \$0-to-all-rows;
 #X obj 228 152 r \$0-from-grid;
 #X obj 228 176 s \$0-to-all-rows;
+#X obj 105 419 monome/utils/dedupenote;
+#X text 110 377 Use of dedupenote recommended if you’re using the
+pd [poly] object., f 36;
 #X connect 2 0 8 0;
 #X connect 2 1 6 0;
 #X connect 4 0 8 0;
@@ -77,13 +80,14 @@ three rows of a connected grid \, where the rows are offset in fourths
 #X connect 5 0 8 0;
 #X connect 5 1 6 0;
 #X connect 8 0 11 0;
-#X connect 8 1 7 0;
+#X connect 8 1 15 0;
 #X connect 9 0 5 0;
 #X connect 9 0 4 0;
 #X connect 9 0 2 0;
 #X connect 10 0 12 0;
 #X connect 11 0 10 0;
 #X connect 13 0 14 0;
+#X connect 15 0 7 0;
 #X restore 443 387 pd multirow-example;
 #X obj 148 280 route connected;
 #X obj 159 257 s \$0-from-grid;

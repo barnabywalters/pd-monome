@@ -1,0 +1,25 @@
+#N canvas 254 23 591 486 12;
+#X obj 19 20 monome/utils/dedupenote;
+#X text 190 20 — filter duplicate noteon messages for active notes
+;
+#X obj 60 328 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 80 328 print note;
+#X msg 75 228 1 1;
+#X msg 92 254 1 0;
+#X obj 82 285 monome/utils/dedupenote;
+#X text 15 53 Given a stream of [note \, vel< pairs where a vel of
+0 is a keyup and vel > 0 is a keypress \, only lets keypress messages
+through for notes which are not currently active. Keyup messages are
+always let through \, as those duplicates are typically not harmful.
+, f 76;
+#X text 15 125 Primarily useful in contexts where a [poly] object could
+receive duplicate note on messages \, which tends to confuse it and
+lead to hung notes., f 76;
+#X text 113 228 Pressing this multiple times will only result in one
+message…, f 62;
+#X text 129 253 …until a corresponding noteoff is received.;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
